@@ -164,7 +164,7 @@ function linkFoot(state, silent) {
         }
       }
     } else {
-      title = "";
+      title = "NO_TITLE";
     }
 
     if (pos >= max || state.src.charCodeAt(pos) !== 0x29 /* ) */) {
@@ -215,7 +215,7 @@ function linkFoot(state, silent) {
   //
   if (!silent) {
     // 如果存在标题则转成脚注
-    if (title) {
+    if (title !== "NO_TITLE") {
       state.pos = labelStart;
       state.posMax = labelEnd;
 
@@ -231,7 +231,12 @@ function linkFoot(state, silent) {
       const footnoteId = state.env.footnotes.list.length;
 
       // *用来让链接倾斜
-      state.md.inline.parse(`${title}: *${footnoteContent}*`, state.md, state.env, (tokens = []));
+      state.md.inline.parse(
+        title ? `${title}: *${footnoteContent}*` : `${footnoteContent}`,
+        state.md,
+        state.env,
+        (tokens = []),
+      );
 
       token = state.push("footnote_word", "", 0);
       token.content = state.src.slice(labelStart, labelEnd);
