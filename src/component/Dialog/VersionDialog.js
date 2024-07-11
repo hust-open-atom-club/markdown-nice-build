@@ -39,25 +39,25 @@ class VersionDialog extends Component {
     w.location.href = "https://preview.mdnice.com/articles/";
   };
 
-  componentDidMount = async () => {
-    try {
-      const {
-        data: response,
-        data: {data},
-      } = await axios.get("https://api.mdnice.com/versions/newest");
-      if (!response.success) {
-        throw new Error();
-      }
-      const newestVersion = localStorage.getItem(NEWEST_VERSION);
-      if (data.versionNumber !== newestVersion) {
-        this.props.dialog.setVersionOpen(true);
-        localStorage.setItem(NEWEST_VERSION, data.versionNumber);
-      }
-      this.setState({...data});
-    } catch (err) {
-      console.error("读取最新Mdnice版本信息错误");
-    }
-  };
+  // componentDidMount = async () => {
+  //   try {
+  //     const {
+  //       data: response,
+  //       data: {data},
+  //     } = await axios.get("https://api.mdnice.com/versions/newest");
+  //     if (!response.success) {
+  //       throw new Error();
+  //     }
+  //     const newestVersion = localStorage.getItem(NEWEST_VERSION);
+  //     if (data.versionNumber !== newestVersion) {
+  //       this.props.dialog.setVersionOpen(true);
+  //       localStorage.setItem(NEWEST_VERSION, data.versionNumber);
+  //     }
+  //     this.setState({...data});
+  //   } catch (err) {
+  //     console.error("读取最新Mdnice版本信息错误");
+  //   }
+  // };
 
   render() {
     return (
