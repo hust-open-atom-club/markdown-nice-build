@@ -232,7 +232,7 @@ function linkFoot(state, silent) {
 
       // *用来让链接倾斜
       state.md.inline.parse(
-        title ? `${title}: *${footnoteContent}*` : `${footnoteContent}`,
+        title ? `${title}: *${footnoteContent}*` : `*${footnoteContent}*`,
         state.md,
         state.env,
         (tokens = []),
