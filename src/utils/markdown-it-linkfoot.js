@@ -230,9 +230,9 @@ function linkFoot(state, silent) {
 
       const footnoteId = state.env.footnotes.list.length;
 
-      // *用来让链接倾斜
+      // *用来让链接倾斜，**用来让链接加粗
       state.md.inline.parse(
-        title ? `${title}: *${footnoteContent}*` : `*${footnoteContent}*`,
+        title ? `**${title}**: *${footnoteContent}*` : `*${footnoteContent}*`,
         state.md,
         state.env,
         (tokens = []),
